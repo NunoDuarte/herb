@@ -20,6 +20,16 @@ pip install -r requirements.txt
 
 ## 🤖 ROS Integration
 
+### Prerequisites
+- ROS Noetic (Ubuntu 20.04)
+- Intel RealSense SDK 2.0
+- Python 3.8+
+- Baxter SDK
+- Additional ROS packages:
+  ```bash
+  sudo apt install ros-noetic-realsense2-camera
+  sudo apt install ros-noetic-realsense2-description
+
 ### Environment Setup
 ```bash
 # Set ROS network configuration
@@ -50,5 +60,28 @@ source /opt/ros/noetic.sh
 /home/user/env/packbot/bin/python3 environment/physics0/baxter_demos.py
 ```
 
+### Troubleshooting Guide
+#### Camera Issues
+```bash
+# Check if RealSense camera is detected
+rs-enumerate-devices
 
+# Test camera stream
+realsense-viewer
 
+# Verify camera topics
+rostopic list | grep camera
+
+#### Baxter Issues
+# Test Baxter connectivity
+ping <baxter_ip>
+
+# Check Baxter status
+rosrun baxter_tools enable_robot.py -s
+
+# Verify joint states
+rostopic echo /robot/joint_states
+
+# Check ROS environment variables
+echo $ROS_MASTER_URI
+echo $ROS_IP
