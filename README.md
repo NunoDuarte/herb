@@ -71,8 +71,9 @@ realsense-viewer
 
 # Verify camera topics
 rostopic list | grep camera
-
+```
 #### Baxter Issues
+```bash
 # Test Baxter connectivity
 ping <baxter_ip>
 
@@ -85,3 +86,4 @@ rostopic echo /robot/joint_states
 # Check ROS environment variables
 echo $ROS_MASTER_URI
 echo $ROS_IP
+```
