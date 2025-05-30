@@ -13,7 +13,7 @@ EXPERIMENT = 'shortlist'
 
 MODEL_NAME = 'c09_s01'
 
-MODEL_FILE = 'policies/0221_for_human_comparison.pkl'
+MODEL_FILE = 'policies/sac_model_c09s01.pkl'
 
 shortlist = [
 'p28_s2',
@@ -45,7 +45,7 @@ shortlist = [
 'p81_s1',
 ]
 
-shortlist = ['p11_s5']
+shortlist = ['p77_s1']
 
 # import test set list json
 with open('test_set_list.json') as f:
@@ -70,8 +70,6 @@ for test_set in shortlist:
     unpacked_list = test_set_list[test_set]
 
     print(unpacked_list)
-
-    
 
     df = pd.DataFrame(columns=['objectName', 'x', 'y', 'theta'])
 
@@ -103,15 +101,20 @@ for test_set in shortlist:
         # remove first dimension of obs
         heightmap = obs[0]
         # draw_heatmap_norm(heightmap)
-        # print(rewards)
+        print(rewards)
 
         i += 1
 
         if terminated:
-            # export the dataframe as a csv
-            df.to_csv(os.path.join(export_dir, pack_name_full + '.csv'))
+            if rewards == -1:
+                print('Bad packing. Object ' + objname + ' failed')
+            else:
+                print('Finished Packing. Done!')
+                # export the dataframe as a csv
+                df.to_csv(os.path.join(export_dir, pack_name_full + '.csv'))
 
-            if SAVE_IMAGES:
-                env.render(heightname=os.path.join(export_dir, pack_name_full + '_height_' + 'final.png'), colorname=os.path.join(export_dir, pack_name_full + '_color_' + 'final.png'))
+                if SAVE_IMAGES:
+                    env.render(heightname=os.path.join(export_dir, pack_name_full + '_height_' + 'final.png'), colorname=os.path.join(export_dir, pack_name_full + '_color_' + 'final.png'))
+
 
         
