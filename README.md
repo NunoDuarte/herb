@@ -17,6 +17,21 @@ git clone https://github.com/NunoDuarte/herb.git
 cd herb
 pip install -r requirements.txt
 ```
+### 🔧 Tested Environment
+
+#### System Requirements
+- **OS**: Ubuntu 20.04 LTS
+- **Python**: 3.8
+- **CUDA**: 12.0
+- **ROS**: Noetic
+
+#### Key Dependencies
+```bash
+torch==2.0.0
+stable-baselines3==2.0.0
+gym==0.26.2
+numpy==1.24.3
+```
 
 ## Pybullet Simulation
 # run inference on the trained model
@@ -24,6 +39,8 @@ pip install -r requirements.txt
 export PYTHONPATH=/home/nuno/Documents/Nuno_github/python/herb
 python environment/physics0/test_model.py
 ```
+
+
 
 ## 🤖 ROS Integration
 
