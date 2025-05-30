@@ -15,7 +15,7 @@ pip install -r requirements.txt
 - **ROS**: Noetic
 
 ## Pybullet Simulation
-###3 run inference on the trained model
+### run inference on the trained model
 ```bash
 export PYTHONPATH=/home/nuno/Documents/Nuno_github/python/herb
 python environment/physics0/test_model.py
