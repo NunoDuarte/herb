@@ -15,11 +15,24 @@ pip install -r requirements.txt
 - **CUDA**: 12.0
 
 ## Pybullet Simulation
-### run trained RL policy for packing
+Add python path
 ```bash
 export PYTHONPATH=/PATH/TO/herb
+```
+### run human packing sequences in Pybullet
+```bash
+python environment/physics0/replay_dataset.py
+```
+### run trained RL policy for test set sequences
+```bash
+python environment/physics0/generate_testset_packs.py
+```
+you can specific which sequence by looking into file ```test_set_list.json```
+### run trained RL policy for any sequence of objects
+```bash
 python environment/physics0/test_model.py
 ```
+you can specify the objects by changing the list in ```unpacked_list```
 
 ## 🔽 Download pretrained model
 
