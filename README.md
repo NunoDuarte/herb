@@ -44,7 +44,7 @@ export ROS_IP=<local_pc_ip>        # Your PC's IP address
 export ROS_MASTER_URI=<baxter_ip>  # Baxter robot's IP address
 ```
 
-## ROS Part
+### Setup
 Don't forget to set ROS_IP (local PC) and ROS_MASTER_URI (Baxter PC) for all terminals.
 
 #### First Terminal
