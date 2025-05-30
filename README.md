@@ -105,5 +105,4 @@ If you find this code useful, please cite:
   journal={arXiv preprint arXiv:2504.16595},
   year={2025}
 }
-}
 ```
