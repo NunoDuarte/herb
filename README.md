@@ -9,8 +9,6 @@ cd herb
 pip install -r requirements.txt
 ```
 ### 🔧 Tested Environment
-
-#### System Requirements
 - **OS**: Ubuntu 20.04 LTS
 - **Python**: 3.8
 - **CUDA**: 12.0
