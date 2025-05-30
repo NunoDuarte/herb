@@ -12,7 +12,6 @@ pip install -r requirements.txt
 - **OS**: Ubuntu 20.04 LTS
 - **Python**: 3.8
 - **CUDA**: 12.0
-- **ROS**: Noetic
 
 ## Pybullet Simulation
 ### run inference on the trained model
@@ -27,7 +26,7 @@ You can download the latest model from the [Release page](https://github.com/Nun
 Or directly: [Download model](https://github.com/NunoDuarte/herb/releases/download/v1.0/sac_model_c09s01.pkl)
 
 ## 🤖 ROS Integration
-
+We also run the RL policy on the Baxter robot 
 ### Prerequisites
 - ROS Noetic (Ubuntu 20.04)
 - Intel RealSense SDK 2.0
