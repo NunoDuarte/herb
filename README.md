@@ -1,14 +1,5 @@
 # HERB - Hierarchical Robot Learning
-
-A Python implementation for hierarchical robot learning using SAC (Soft Actor-Critic).
-
-## 📝 Description
 HERB is a framework for training robotic agents using hierarchical reinforcement learning approaches.
-
-## 🔽 Download
-
-You can download the latest model from the [Release page](https://github.com/NunoDuarte/herb/releases/latest)  
-Or directly: [Download model](https://github.com/NunoDuarte/herb/releases/download/v1.0/sac_model_c09s01.pkl)
 
 ## 🛠️ Installation
 
@@ -18,32 +9,24 @@ cd herb
 pip install -r requirements.txt
 ```
 ### 🔧 Tested Environment
-
-#### System Requirements
 - **OS**: Ubuntu 20.04 LTS
 - **Python**: 3.8
 - **CUDA**: 12.0
-- **ROS**: Noetic
-
-#### Key Dependencies
-```bash
-torch==2.0.0
-stable-baselines3==2.0.0
-gym==0.26.2
-numpy==1.24.3
-```
 
 ## Pybullet Simulation
-# run inference on the trained model
+### run inference on the trained model
 ```bash
 export PYTHONPATH=/home/nuno/Documents/Nuno_github/python/herb
 python environment/physics0/test_model.py
 ```
 
+## 🔽 Download
 
+You can download the latest model from the [Release page](https://github.com/NunoDuarte/herb/releases/latest)  
+Or directly: [Download model](https://github.com/NunoDuarte/herb/releases/download/v1.0/sac_model_c09s01.pkl)
 
 ## 🤖 ROS Integration
-
+We also run the RL policy on the Baxter robot 
 ### Prerequisites
 - ROS Noetic (Ubuntu 20.04)
 - Intel RealSense SDK 2.0
@@ -61,7 +44,7 @@ export ROS_IP=<local_pc_ip>        # Your PC's IP address
 export ROS_MASTER_URI=<baxter_ip>  # Baxter robot's IP address
 ```
 
-### ROS Part
+## ROS Part
 Don't forget to set ROS_IP (local PC) and ROS_MASTER_URI (Baxter PC) for all terminals.
 
 #### First Terminal
@@ -84,7 +67,7 @@ source /opt/ros/noetic.sh
 /home/user/env/packbot/bin/python3 environment/physics0/baxter_demos.py
 ```
 
-### Troubleshooting Guide
+## Troubleshooting Guide
 #### Camera Issues
 ```bash
 # Check if RealSense camera is detected
