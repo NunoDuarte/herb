@@ -7,17 +7,16 @@ import json
 
 SAVE_IMAGES = False
 
-PACKS_DIR = 'packs'
-
-PACK_NAME = 'pack0'
-
 MODEL_FILE = 'policies/0221_for_human_comparison.pkl'
 
-export_dir = os.path.join(PACKS_DIR, PACK_NAME)
+if SAVE_IMAGES:
+    PACKS_DIR = 'packs' 
+    PACK_NAME = 'pack0'
+    export_dir = os.path.join(PACKS_DIR, PACK_NAME)
 
-# create the export directory if it does not exist
-if not os.path.exists(export_dir):
-    os.makedirs(export_dir)
+    # create the export directory if it does not exist
+    if not os.path.exists(export_dir):
+        os.makedirs(export_dir)
 
 
 env = PackingGame(visual=True, ordered_objs=True, reward_function='compactness', unpacked_list_min=0.7, unpacked_list_max=0.9)

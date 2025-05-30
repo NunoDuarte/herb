@@ -7,12 +7,6 @@ import json
 
 SAVE_IMAGES = True
 
-PACKS_DIR = 'packs'
-
-EXPERIMENT = 'shortlist'
-
-MODEL_NAME = 'c09_s01'
-
 MODEL_FILE = 'policies/sac_model_c09s01.pkl'
 
 shortlist = [
@@ -45,7 +39,7 @@ shortlist = [
 'p81_s1',
 ]
 
-shortlist = ['p77_s1']
+shortlist = ['p81_s1']
 
 # import test set list json
 with open('test_set_list.json') as f:
@@ -58,13 +52,16 @@ policy.eval()
 
 for test_set in shortlist:
 
-    pack_name_full = MODEL_NAME + test_set
-    export_dir = os.path.join(PACKS_DIR, EXPERIMENT, MODEL_NAME, pack_name_full)
+    if SAVE_IMAGES:
+        PACKS_DIR = 'packs'
+        EXPERIMENT = 'shortlist'
+        MODEL_NAME = 'c09_s01'
+        pack_name_full = MODEL_NAME + test_set
+        export_dir = os.path.join(PACKS_DIR, EXPERIMENT, MODEL_NAME, pack_name_full)
     
-
-    # create the export directory if it does not exist
-    if not os.path.exists(export_dir):
-        os.makedirs(export_dir)
+        # create the export directory if it does not exist
+        if not os.path.exists(export_dir):
+            os.makedirs(export_dir)
 
     # get the unpacked list
     unpacked_list = test_set_list[test_set]
