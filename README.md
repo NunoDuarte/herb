@@ -1,5 +1,6 @@
 # HERB - Hierarchical Robot Learning
-HERB is a framework for training robotic agents using hierarchical reinforcement learning approaches.
+HERB is a framework for training robotic agents using hierarchical reinforcement learning approaches. This work is based on our paper 
+[arXiv](https://arxiv.org/pdf/2504.16595)
 
 ## 🛠️ Installation
 
@@ -92,4 +93,17 @@ rostopic echo /robot/joint_states
 # Check ROS environment variables
 echo $ROS_MASTER_URI
 echo $ROS_IP
+```
+
+## 📄 Citation
+
+If you find this code useful, please cite:
+```bibtex
+@article{perovic2025herb,
+  title={HERB: Human-augmented Efficient Reinforcement learning for Bin-packing},
+  author={Perovic, Gojko and Duarte, Nuno Ferreira and Dehban, Atabak and Teixeira, Gon{\c{c}}alo and Falotico, Egidio and Santos-Victor, Jos{\'e}},
+  journal={arXiv preprint arXiv:2504.16595},
+  year={2025}
+}
+}
 ```
