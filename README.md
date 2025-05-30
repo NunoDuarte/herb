@@ -1,14 +1,5 @@
 # HERB - Hierarchical Robot Learning
-
-A Python implementation for hierarchical robot learning using SAC (Soft Actor-Critic).
-
-## 📝 Description
 HERB is a framework for training robotic agents using hierarchical reinforcement learning approaches.
-
-## 🔽 Download
-
-You can download the latest model from the [Release page](https://github.com/NunoDuarte/herb/releases/latest)  
-Or directly: [Download model](https://github.com/NunoDuarte/herb/releases/download/v1.0/sac_model_c09s01.pkl)
 
 ## 🛠️ Installation
 
@@ -25,14 +16,6 @@ pip install -r requirements.txt
 - **CUDA**: 12.0
 - **ROS**: Noetic
 
-#### Key Dependencies
-```bash
-torch==2.0.0
-stable-baselines3==2.0.0
-gym==0.26.2
-numpy==1.24.3
-```
-
 ## Pybullet Simulation
 # run inference on the trained model
 ```bash
@@ -40,7 +23,10 @@ export PYTHONPATH=/home/nuno/Documents/Nuno_github/python/herb
 python environment/physics0/test_model.py
 ```
 
+## 🔽 Download
 
+You can download the latest model from the [Release page](https://github.com/NunoDuarte/herb/releases/latest)  
+Or directly: [Download model](https://github.com/NunoDuarte/herb/releases/download/v1.0/sac_model_c09s01.pkl)
 
 ## 🤖 ROS Integration
 
