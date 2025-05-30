@@ -42,7 +42,7 @@ shortlist = [
 shortlist = ['p81_s1']
 
 # import test set list json
-with open('test_set_list.json') as f:
+with open('dataset/test_set_list.json') as f:
     test_set_list = json.load(f)
 
 env = PackingGame(visual=True, ordered_objs=True, reward_function='compactness_stability', alpha=0.6, unpacked_list_min=0.7, unpacked_list_max=0.9)
