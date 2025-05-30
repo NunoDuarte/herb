@@ -16,7 +16,7 @@ pip install -r requirements.txt
 ## Pybullet Simulation
 ### run inference on the trained model
 ```bash
-export PYTHONPATH=/home/nuno/Documents/Nuno_github/python/herb
+export PYTHONPATH=/PATH/TO/herb
 python environment/physics0/test_model.py
 ```
 
