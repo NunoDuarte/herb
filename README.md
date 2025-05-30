@@ -15,7 +15,7 @@ pip install -r requirements.txt
 - **CUDA**: 12.0
 
 ## Pybullet Simulation
-### run inference on the trained model
+### run trained RL policy for packing
 ```bash
 export PYTHONPATH=/PATH/TO/herb
 python environment/physics0/test_model.py
