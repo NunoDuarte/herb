@@ -61,7 +61,10 @@ export ROS_IP=<local_pc_ip>        # Your PC's IP address
 export ROS_MASTER_URI=<baxter_ip>  # Baxter robot's IP address
 ```
 
-### Demo
+### ROS master
+TODO: add instructions to run baxter and the demo to move robot
+
+### ROS + RL Demo
 Don't forget to set ROS_IP (local PC) and ROS_MASTER_URI (Baxter PC) for all terminals.
 #### First Terminal
 Open RealSense camera:
