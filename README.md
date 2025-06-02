@@ -2,7 +2,7 @@
 HERB is a framework for training robotic agents using hierarchical reinforcement learning approaches. This work is based on our paper 
 [arXiv](https://arxiv.org/pdf/2504.16595)
 
-<img src="media/pybullet_gif.gif" width="233" height="300" /> <img src="media/second_gif.gif" width="400" height="225" />
+<img src="media/pybullet_gif.gif" width="233" height="300" /> <img src="media/iros25_herb_baxter.gif" width="535" height="300" />
 
 ## 🛠️ Installation
 
