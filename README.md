@@ -50,7 +50,7 @@ visual=False, # rendering
 ordered_objs=False, # to use Beam-3 to order the list of objects or no
 reward_function='simple', # or 'compactness' or 'comapctness_stability'
 alpha=0.9, # trade off between compactness and stability if that reward is used
-unpacked_list_min=0.7, unpacked_list_max=0.9 # the parameters by which (BioRob2024)[https://arxiv.org/abs/2210.01645] generated objects for the pack, the sum of object volumes to be packed is between 0.7 to 0.9 (fixed value)
+unpacked_list_min=0.7, unpacked_list_max=0.9 # the parameters by which [BioRob2024] generated objects for the pack, the sum of object volumes to be packed is between 0.7 to 0.9 (fixed value)
 ```
 
 ## 🤖 ROS Integration
@@ -136,3 +136,6 @@ If you find this code useful, please cite:
   year={2025}
 }
 ```
+Link to [BioRob2024](https://arxiv.org/abs/2210.01645)
+
+
