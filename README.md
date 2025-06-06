@@ -42,6 +42,7 @@ Or directly: [Download model](https://github.com/NunoDuarte/herb/releases/downlo
 
 ## Train RL 
 TODO
+
 Some arguments that can be changed for a different packing strategy/configuration: 
 ``` python 
 bin_size=[0.345987, 0.227554, 0.1637639] # size of the box
