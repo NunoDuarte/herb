@@ -73,25 +73,30 @@ export ROS_IP=<local_pc_ip>        # Your PC's IP address
 export ROS_MASTER_URI=<baxter_ip>  # Baxter robot's IP address
 ```
 
-### ROS master
-TODO: add instructions to run baxter and the demo to move robot
+### Instructions
+#### ROS master
+To instruct Baxter to grasp the objects and pack it in the box run
+```
+python demo_camera.py
+```
+``` objects.csv ``` sets the object xyz position in the table to grasp (manual grasp). The topic ```/target_pose``` provides the xytheta to pack the object inside the box. 
 
-### ROS + RL Demo
+#### HERB online with ROS +  RealSense
 Don't forget to set ROS_IP (local PC) and ROS_MASTER_URI (Baxter PC) for all terminals.
-#### First Terminal
+##### First Terminal
 Open RealSense camera:
 ```bash
 source /opt/ros/noetic.sh
 roslaunch realsense2_camera rs_camera.launch
 ```
 
-#### Second Terminal
+##### Second Terminal
 Process raw depth for cropped heightmap of box (top-view):
 ```bash
 /usr/bin/python3 realsense_depth_process.py
 ```
 
-#### Third Terminal
+##### Third Terminal
 Run baxter_demo which sends heightmap to RL to predict place location of object on the box:
 ```bash
 source /opt/ros/noetic.sh
