@@ -34,8 +34,7 @@ you can specific which sequence by looking into file ```test_set_list.json```
 ```bash
 python environment/physics0/test_model.py
 ```
-you can specify the objects by changing the list in ```unpacked_list```
-
+you can specify the objects by changing the list in ```unpacked_list```. 
 ## 🔽 Download pretrained model
 
 You can download the latest model from the [Release page](https://github.com/NunoDuarte/herb/releases/latest)  
@@ -43,6 +42,16 @@ Or directly: [Download model](https://github.com/NunoDuarte/herb/releases/downlo
 
 ## Train RL 
 TODO
+Some arguments that can be changed for a different packing strategy/configuration: 
+``` python 
+bin_size=[0.345987, 0.227554, 0.1637639] # size of the box
+object_info='dataset/datas/object_info.npz' , # information file about object projections, volumes, to make observations and calculate metrics
+visual=False, # rendering
+ordered_objs=False, # to use Beam-3 to order the list of objects or no
+reward_function='simple', # or 'compactness' or 'comapctness_stability'
+alpha=0.9, # trade off between compactness and stability if that reward is used
+unpacked_list_min=0.7, unpacked_list_max=0.9 # the parameters by which (Andres paper)[] generated objects for the pack, the sum of object volumes to be packed is between 0.7 to 0.9 (fixed value)
+```
 
 ## 🤖 ROS Integration
 We also run the RL policy on the Baxter robot 
