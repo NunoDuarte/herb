@@ -79,7 +79,7 @@ To instruct Baxter to grasp the objects and pack it in the box run
 ```
 python demo_camera.py
 ```
-``` objects.csv ``` sets the object xyz position in the table to grasp (manual grasp). The topic ```/target_pose``` provides the xytheta to pack the object inside the box. 
+``` objects.csv ``` sets the object $xyz$ position in the table to grasp (manual grasp). The topic ```/target_pose``` provides the $xy\theta$ to pack the object inside the box. 
 
 #### HERB online with ROS +  RealSense
 Don't forget to set ROS_IP (local PC) and ROS_MASTER_URI (Baxter PC) for all terminals.
@@ -97,11 +97,12 @@ Process raw depth for cropped heightmap of box (top-view):
 ```
 
 ##### Third Terminal
-Run baxter_demo which sends heightmap to RL to predict place location of object on the box:
+Run baxter_demo which sends heightmap to RL to predict place location ($xy\theta$) of object on the box:
 ```bash
 source /opt/ros/noetic.sh
 /home/user/env/packbot/bin/python3 environment/physics0/baxter_demos.py
 ```
+While baxter_demo is running the $xy\theta$ is written to ```/target_pose``` to be processed by baxter
 
 ## Troubleshooting Guide
 #### Camera Issues
