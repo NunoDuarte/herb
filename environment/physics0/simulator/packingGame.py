@@ -174,7 +174,9 @@ class PackingGame(gym.Env):
         targetC[2] = z 
         
         self.interface.addObjectC(name=objname, targetC=targetC, rotation=rotation, scale=[1.0, 1.0, 1.0])
-        # self.interface.simulateToQuasistatic(linearTol = 0.01, angularTol = 0.01, batch = 1.0, dt = 0.01, maxBatch = 2)
+        # simulate the gravity and contact forces
+        self.interface.simulateToQuasistatic(linearTol = 0.01, angularTol = 0.01, batch = 1.0, dt = 0.01, maxBatch = 2)  
+        # ----------------------------------------    
         self.interface.disableObject(self.interface.objs[-1])
 
         # remove the placed object
