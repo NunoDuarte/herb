@@ -72,10 +72,9 @@ while not terminated:
     i += 1
 
     if terminated:
-        # export the dataframe as a csv
-        df.to_csv(os.path.join(export_dir, PACK_NAME + '.csv'))
-
         if SAVE_IMAGES:
+            # export the dataframe as a csv
+            df.to_csv(os.path.join(export_dir, PACK_NAME + '.csv'))
             env.render(heightname=os.path.join(export_dir, PACK_NAME + '_height_' + 'final.png'), colorname=os.path.join(export_dir, PACK_NAME + '_color_' + 'final.png'))
 
         
