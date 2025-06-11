@@ -12,9 +12,9 @@ import datetime
 import os
 
 
-EXPERIMENT_NAME = '0226_ocs09'
+EXPERIMENT_NAME = '0228_CO'
 
-tmp_path = "/home/gojko/gojko-irbpp/tmp/sb3_log/" + EXPERIMENT_NAME
+tmp_path = "/mnt/home/nuno/code/github/archive/gojko-irbpp/tmp/sb3_log/" + EXPERIMENT_NAME
 
 # check does the tmp_path exist
 if os.path.exists(tmp_path):
@@ -48,13 +48,13 @@ new_logger = configure(tmp_path, ["stdout", "csv", "tensorboard"])
 
 # train_env = PackingGame()
 
-N_ENVS = 360
+N_ENVS = 100
 DESIRED_CP = 200000
 DESIRED_EVAL = 500
-TOTAL_TIMESTEPS = 20000000
+TOTAL_TIMESTEPS = 10000000
 ORDERED_OBJ = True
-REWARD_FUNCTION = 'compactness_stability'
-ALPHA = 0.9
+REWARD_FUNCTION = 'compactness'
+ALPHA = None
 UNPACKED_LIST_MIN = 0.7
 UNPACKED_LIST_MAX = 0.9
 CUSTOM_POLICY = None

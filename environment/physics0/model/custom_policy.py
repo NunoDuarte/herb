@@ -66,9 +66,17 @@ class ResEncoderSimple(nn.Module):
     def __init__(self):
         super(ResEncoderSimple, self).__init__()
         self.encoder = resnet18(pretrained=True)
-
+        
+        # Reduce input image size
+        self.transform = transforms.Compose([
+            transforms.Resize((112, 112)),  # Reduced from 224x224
+            transforms.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))
+        ])
+        
+        # Remove the final layers to save memory
         self.encoder = nn.Sequential(*list(self.encoder.children())[:-1])
         
+        # Freeze parameters to save memory
         for param in self.encoder.parameters():
             param.requires_grad = False
 
@@ -80,8 +88,6 @@ class ResEncoderSimple(nn.Module):
         self.out_dim = out_shape[1]
 
         self.fc = nn.Linear(self.out_dim, self.repr_dim)
-
-        self.transform = transforms.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))
 
     
     def forward(self, obs):
@@ -119,10 +125,11 @@ class ResnetCNN(BaseFeaturesExtractor):
     
 
 if __name__ == '__main__':
-    
     from stable_baselines3 import SAC
     from packingGame import PackingGame
+    import torch.cuda.amp as amp
 
+    # Reduce buffer size and batch size
     policy_kwargs = dict(
         features_extractor_class=ResnetCNN,
         features_extractor_kwargs=dict(features_dim=1024),
@@ -130,6 +137,24 @@ if __name__ == '__main__':
 
     env = PackingGame(visual=False, ordered_objs=True, reward_function='compactness_stability')
 
-    model = SAC('CnnPolicy', env=env, policy_kwargs=policy_kwargs, verbose=1)
+    # Configure SAC with smaller buffer and batch size
+    model = SAC(
+        'CnnPolicy', 
+        env=env,
+        policy_kwargs=policy_kwargs,
+        buffer_size=100000,  # Reduced from default 1M
+        batch_size=64,      # Reduced from default 256
+        learning_starts=1000,  # Reduced from default 100
+        verbose=1
+    )
 
+    # Enable mixed precision training
+    scaler = amp.GradScaler()
+    
+    # Set torch to use memory efficient algorithms
+    torch.backends.cudnn.benchmark = True
+    
+    # Optional: Enable memory efficient attention if using newer PyTorch versions
+    torch.backends.cuda.enable_mem_efficient_sdp(True)
+    
     model.learn(1000)

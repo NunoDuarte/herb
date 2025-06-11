@@ -4,7 +4,7 @@ import os
 import json
 import pandas as pd
 
-MODEL_DIRECTORY = '/home/gojko/gojko-irbpp/tmp/sb3_log/0222_cs_09/'
+MODEL_DIRECTORY = '/PATH/TO/tmp/FOLDER'
 TEST_FILE = 'test_set_list.json'
 
 shortlist = [
