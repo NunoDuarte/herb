@@ -1,5 +1,5 @@
 from stable_baselines3.common.env_checker import check_env
-from packingGame import PackingGame
+from environment.physics0.simulator.packingGame import PackingGame
 from stable_baselines3 import SAC
 from stable_baselines3.common.callbacks import CheckpointCallback, EvalCallback
 from stable_baselines3.common.logger import configure
@@ -7,14 +7,14 @@ from stable_baselines3.common.vec_env import SubprocVecEnv
 from stable_baselines3.common.utils import set_random_seed
 from stable_baselines3.common.env_util import make_vec_env
 from stable_baselines3.common.monitor import Monitor
-from custom_policy import ResnetCNN
+from environment.physics0.model.custom_policy import ResnetCNN
 import datetime
 import os
 
 
-EXPERIMENT_NAME = '0228_CO'
-
-tmp_path = "/mnt/home/nuno/code/github/archive/gojko-irbpp/tmp/sb3_log/" + EXPERIMENT_NAME
+EXPERIMENT_NAME = 'NEW_NAME'  # change this to your experiment name
+# create a tmp_path for the experiment
+tmp_path = "PATH/TO/tmp/FOLDER/" + EXPERIMENT_NAME
 
 # check does the tmp_path exist
 if os.path.exists(tmp_path):
@@ -114,8 +114,8 @@ with open(f'{tmp_path}/hyperparameters.txt', 'w') as f:
 
 # Eval callback
 # eval_callback = EvalCallback(eval_env, 
-#                              best_model_save_path='/home/gojko/gojko-irbpp/tmp/sb3_log/' + EXPERIMENT_NAME + '/best_model', 
-#                              log_path='/home/gojko/gojko-irbpp/tmp/sb3_log/' + EXPERIMENT_NAME + '/eval_logs', 
+#                              best_model_save_path='PATH/TO/tmp/FOLDER/' + EXPERIMENT_NAME + '/eval_models',
+#                              log_path='PATH/TO/tmp/FOLDER/' + EXPERIMENT_NAME + '/eval_logs', 
 #                              eval_freq=max(int(DESIRED_EVAL // N_ENVS), 1), 
 #                              deterministic=True, 
 #                              render=False,
