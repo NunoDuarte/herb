@@ -40,19 +40,44 @@ you can specify the objects by changing the list in ```unpacked_list```.
 You can download the latest model from the [Release page](https://github.com/NunoDuarte/herb/releases/latest)  
 Or directly: [Download model](https://github.com/NunoDuarte/herb/releases/download/v1.0/sac_model_c04s06.pkl)
 
-## Train RL 
-TODO
+## 🎓 Train RL
+To train the HERB RL policy, run:
 
-Some arguments that can be changed for a different packing strategy/configuration: 
-``` python 
-bin_size=[0.345987, 0.227554, 0.1637639] # size of the box
-object_info='dataset/datas/object_info.npz' , # information file about object projections, volumes, to make observations and calculate metrics
-visual=False, # rendering
-ordered_objs=False, # to use Beam-3 to order the list of objects or no
-reward_function='simple', # or 'compactness' or 'comapctness_stability'
-alpha=0.9, # trade off between compactness and stability if that reward is used
-unpacked_list_min=0.7, unpacked_list_max=0.9 # the parameters by which [BioRob2024] generated objects for the pack, the sum of object volumes to be packed is between 0.7 to 0.9 (fixed value)
+```bash
+python environment/physics0/model/train.py
 ```
+
+This will train the `custom_policy.py` model with the following configurable settings:
+
+### System Requirements
+- Adjust image size and buffer size based on your server capabilities
+- Set number of parallel environments according to your CPU capacity in `train.py`
+
+### Configuration Parameters
+You can customize the training by modifying these parameters:
+
+```python
+# Box dimensions (in meters)
+bin_size = [0.345987, 0.227554, 0.1637639]
+
+# Dataset configuration
+object_info = 'dataset/datas/object_info.npz'  # Contains object projections and volume data
+
+# Training settings
+visual = False          # Enable/disable rendering
+ordered_objs = False    # Use Beam-3 for object ordering
+reward_function = 'simple'  # Options: 'simple', 'compactness', 'compactness_stability'
+alpha = 0.9            # Trade-off between compactness and stability (if using compactness_stability)
+
+# Object volume constraints (from BioRob2024)
+unpacked_list_min = 0.7  # Minimum total volume ratio
+unpacked_list_max = 0.9  # Maximum total volume ratio
+```
+
+### Reward Functions
+- `simple`: Basic reward for successful packing
+- `compactness`: Focuses on minimizing unused space
+- `compactness_stability`: Balances space utilization and object stability using `alpha` parameter
 
 ## 🤖 ROS Integration
 We also run the RL policy on the Baxter robot 
