@@ -7,7 +7,7 @@ import json
 
 SAVE_IMAGES = False
 
-MODEL_FILE = 'policies/0221_for_human_comparison.pkl'
+MODEL_FILE = 'policies/sac_model_c04s06.pkl'
 
 if SAVE_IMAGES:
     PACKS_DIR = 'packs' 
