@@ -10,9 +10,12 @@ from stable_baselines3.common.monitor import Monitor
 from environment.physics0.model.custom_policy import ResnetCNN
 import datetime
 import os
+import glob
 
 
 EXPERIMENT_NAME = 'NEW_NAME'  # change this to your experiment name
+CHECKPOINT = True  # Add this new parameter
+
 # create a tmp_path for the experiment
 tmp_path = "PATH/TO/tmp/FOLDER/" + EXPERIMENT_NAME
 if tmp_path == "PATH/TO/tmp/FOLDER/" + EXPERIMENT_NAME:
@@ -20,7 +23,8 @@ if tmp_path == "PATH/TO/tmp/FOLDER/" + EXPERIMENT_NAME:
 
 # check does the tmp_path exist
 if os.path.exists(tmp_path):
-    raise ValueError("The path already exists. Please choose another name for the experiment.")
+    if not CHECKPOINT:
+        raise ValueError(f"The path '{tmp_path}' already exists. Please choose another name for the experiment.")
 
 new_logger = configure(tmp_path, ["stdout", "csv", "tensorboard"])
 
@@ -77,23 +81,25 @@ train_env = make_vec_env(PackingGame, env_kwargs={'ordered_objs': ORDERED_OBJ,
 # wrap the environment in the monitor wrapper
 # eval_env = Monitor(eval_env, tmp_path)
 
-# Find latest checkpoint
-checkpoints = glob.glob(f"{tmp_path}/sac_model_*.zip")
-if checkpoints:
-    latest_checkpoint = max(checkpoints, key=os.path.getctime)
-    print(f"Loading checkpoint: {latest_checkpoint}")
-    # Load the model from checkpoint
-    model = SAC.load(
-        latest_checkpoint, 
-        env=train_env,
-        # Keep the same parameters as your original model
-        buffer_size=100000,
-        verbose=1
-    )
-    # Set logger for continued training
-    model.set_logger(new_logger)
+# Find latest checkpoint (modify this section)
+if CHECKPOINT:
+    checkpoints = glob.glob(f"{tmp_path}/sac_model_*.zip")
+    if checkpoints:
+        latest_checkpoint = max(checkpoints, key=os.path.getctime)
+        print(f"Loading checkpoint: {latest_checkpoint}")
+        # Load the model from checkpoint
+        model = SAC.load(
+            latest_checkpoint, 
+            env=train_env,
+            buffer_size=100000,
+            verbose=1
+        )
+        model.set_logger(new_logger)
+    else:
+        raise ValueError(f"No checkpoints found. Please set CHECKPOINT to False to start a new training or ensure that checkpoints exist in the specified path: {tmp_path}.")
+
 else:
-    # Your existing model creation code
+    # Create new model without checkpoint
     if CUSTOM_POLICY == None:
         model = SAC('CnnPolicy', train_env, verbose=1, buffer_size=100000)
     elif CUSTOM_POLICY == 'RESNET':
