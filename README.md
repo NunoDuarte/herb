@@ -79,6 +79,33 @@ unpacked_list_max = 0.9  # Maximum total volume ratio
 - `compactness`: Focuses on minimizing unused space
 - `compactness_stability`: Balances space utilization and object stability using `alpha` parameter
 
+---
+
+### 📊 Checking Pretrained Model Performance
+
+To evaluate the performance of the pretrained model on the test set, run:
+
+```bash
+python environment/physics0/model/get_metrics_model.py
+```
+
+This script will replay the test set sequences using the pretrained RL policy and output performance metrics such as:
+- Packing success rate
+- Average reward
+- Space utilization (compactness)
+- Stability (if applicable)
+
+The results will be printed to the console and/or saved to a results file (e.g., `test_results_episode.csv`).
+You can modify or inspect the script to customize which metrics are reported.
+
+To evaluate on custom object sequences, use:
+
+```bash
+python environment/physics0/test_model.py
+```
+and adjust the `unpacked_list` variable as needed.
+
+
 ## 🤖 ROS Integration
 We also run the RL policy on the Baxter robot 
 ### Prerequisites
