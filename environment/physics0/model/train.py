@@ -15,11 +15,12 @@ import os
 EXPERIMENT_NAME = 'NEW_NAME'  # change this to your experiment name
 # create a tmp_path for the experiment
 tmp_path = "PATH/TO/tmp/FOLDER/" + EXPERIMENT_NAME
+if tmp_path == "PATH/TO/tmp/FOLDER/" + EXPERIMENT_NAME:
+    raise ValueError("Please change the tmp_path to your desired path. Edit the 'tmp_path' variable above.")
 
 # check does the tmp_path exist
 if os.path.exists(tmp_path):
     raise ValueError("The path already exists. Please choose another name for the experiment.")
-    exit()
 
 new_logger = configure(tmp_path, ["stdout", "csv", "tensorboard"])
 
