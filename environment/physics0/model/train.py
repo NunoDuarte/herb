@@ -77,16 +77,33 @@ train_env = make_vec_env(PackingGame, env_kwargs={'ordered_objs': ORDERED_OBJ,
 # wrap the environment in the monitor wrapper
 # eval_env = Monitor(eval_env, tmp_path)
 
-if CUSTOM_POLICY == None:
-  model = SAC('CnnPolicy', train_env, verbose=1, buffer_size=100000)
-elif CUSTOM_POLICY == 'RESNET':
-  policy_kwargs = dict(
-    features_extractor_class=ResnetCNN,
-    features_extractor_kwargs=dict(features_dim=1024),
-  )
-  model = SAC('CnnPolicy', train_env, policy_kwargs=policy_kwargs, verbose=1)
+# Find latest checkpoint
+checkpoints = glob.glob(f"{tmp_path}/sac_model_*.zip")
+if checkpoints:
+    latest_checkpoint = max(checkpoints, key=os.path.getctime)
+    print(f"Loading checkpoint: {latest_checkpoint}")
+    # Load the model from checkpoint
+    model = SAC.load(
+        latest_checkpoint, 
+        env=train_env,
+        # Keep the same parameters as your original model
+        buffer_size=100000,
+        verbose=1
+    )
+    # Set logger for continued training
+    model.set_logger(new_logger)
 else:
-  raise ValueError("CUSTOM_POLICY must be None or 'RESNET'")
+    # Your existing model creation code
+    if CUSTOM_POLICY == None:
+        model = SAC('CnnPolicy', train_env, verbose=1, buffer_size=100000)
+    elif CUSTOM_POLICY == 'RESNET':
+        policy_kwargs = dict(
+            features_extractor_class=ResnetCNN,
+            features_extractor_kwargs=dict(features_dim=1024),
+        )
+        model = SAC('CnnPolicy', train_env, policy_kwargs=policy_kwargs, verbose=1)
+    else:
+        raise ValueError("CUSTOM_POLICY must be None or 'RESNET'")
 
 model.set_logger(new_logger)
 
@@ -116,7 +133,7 @@ with open(f'{tmp_path}/hyperparameters.txt', 'w') as f:
 # Eval callback
 # eval_callback = EvalCallback(eval_env, 
 #                              best_model_save_path='PATH/TO/tmp/FOLDER/' + EXPERIMENT_NAME + '/eval_models',
-#                              log_path='PATH/TO/tmp/FOLDER/' + EXPERIMENT_NAME + '/eval_logs', 
+#                              log_path='PATH/TO/tmp/FOLDER/' + EXPERIMENT_NAME + '/eval_logs',
 #                              eval_freq=max(int(DESIRED_EVAL // N_ENVS), 1), 
 #                              deterministic=True, 
 #                              render=False,
