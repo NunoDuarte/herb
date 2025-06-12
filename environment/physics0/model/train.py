@@ -14,7 +14,7 @@ import glob
 
 
 EXPERIMENT_NAME = 'NEW_NAME'  # change this to your experiment name
-CHECKPOINT = True  # Add this new parameter
+CHECKPOINT = False  
 
 # create a tmp_path for the experiment
 tmp_path = "PATH/TO/tmp/FOLDER/" + EXPERIMENT_NAME
