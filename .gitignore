@@ -1,0 +1,5 @@
+# Ignore policies directory
+policies/
+
+# Ignore all .log files
+*.log
