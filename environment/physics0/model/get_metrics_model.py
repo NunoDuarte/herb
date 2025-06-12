@@ -40,7 +40,7 @@ df_per_step = pd.DataFrame(columns=['filename', 'compactness_step', 'stability',
 
 time_elapsed_list = []
 
-id = 4  # Change this to the number of sequences you want to test
+id = 4  # Change this to the number of sequences you want to test; if all sequences, set id to len(test_set_list)
 pick_n_of_sequences = dict(list(test_set_list.items())[:id])
 for filename in pick_n_of_sequences:
     print(filename)
