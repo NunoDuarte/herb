@@ -1,5 +1,6 @@
 # Ignore policies directory
 policies/
+tmp/
 
 # Ignore all .log files
 *.log
