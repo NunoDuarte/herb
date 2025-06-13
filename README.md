@@ -47,7 +47,7 @@ To train the HERB RL policy, run:
 python environment/physics0/model/train.py
 ```
 
-This will train the `custom_policy.py` model with the following configurable settings:
+This will train the `custom_policy.py` model.
 
 ### System Requirements
 - Adjust image size and buffer size based on your server capabilities
