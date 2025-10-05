@@ -105,8 +105,24 @@ class Space(object):
         ray_origins[:, 2] = self.bin_dimension[2] * self.scale[2] * 2
         ray_ends[:, 2] = 0
 
-        intersections = p.rayTestBatch(ray_origins, ray_ends, numThreads=16)
-        intersections = np.array(intersections, dtype=object)
+        # PyBullet has a maximum batch size limit for rayTestBatch
+        # Process rays in smaller batches to avoid exceeding the limit
+        batch_size = 10000  # Conservative batch size to stay well under PyBullet's limit
+        total_rays = len(ray_origins)
+        
+        # Initialize arrays to store results
+        all_intersections = []
+        
+        # Process rays in batches
+        for i in range(0, total_rays, batch_size):
+            end_idx = min(i + batch_size, total_rays)
+            batch_origins = ray_origins[i:end_idx]
+            batch_ends = ray_ends[i:end_idx]
+            
+            batch_intersections = p.rayTestBatch(batch_origins, batch_ends, numThreads=16)
+            all_intersections.extend(batch_intersections)
+        
+        intersections = np.array(all_intersections, dtype=object)
 
         maskH = intersections[:, 0]
         maskH = np.where(maskH >= 0, 1, 0)
