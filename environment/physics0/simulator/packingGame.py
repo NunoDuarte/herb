@@ -10,9 +10,6 @@ from environment.physics0.simulator.space import draw_heatmap_norm
 import time
 
 
-#from Andre's Unity code
-BOX_VOLUME = 0.0140426
-
 ALL_OBJECTS = [
     "002 MasterChef Can",
     "003 Cracker Box",
@@ -91,6 +88,13 @@ class PackingGame(gym.Env):
         self.interface.reset()
         print('PackingGame initialized')
 
+        if not np.array_equal(self.bin, [0.345987, 0.227554, 0.1637639]):
+            self.BOX_VOLUME = self.bin[0]*self.bin[1]*self.bin[2]
+            print('new BOX_VOLUME is {} for bin_size {}'.format(self.BOX_VOLUME, self.bin)) 
+        else:
+            #from Andre's Unity code
+            self.BOX_VOLUME = 0.0140426      # for default bin_size = [0.345987, 0.227554, 0.1637639]
+
     def reset(self, seed=None, options=None, unpacked_list=None):
         # print('reset')
         self.space.reset()
@@ -147,8 +151,8 @@ class PackingGame(gym.Env):
         # objname = self.unpacked_list[0]
 
         if not actions_normal:
-            action[0] = unnormalize(action[0], 0.0, 0.345987)
-            action[1] = unnormalize(action[1], 0.0, 0.227554)
+            action[0] = unnormalize(action[0], 0.0, self.bin[0])
+            action[1] = unnormalize(action[1], 0.0, self.bin[1])
             action[2] = unnormalize(action[2], 0.0, 180.0)
 
         # throw error if objname is None
@@ -213,8 +217,8 @@ class PackingGame(gym.Env):
 
         start = time.time()
         if not actions_normal:
-            action[0] = unnormalize(action[0], 0.0, 0.345987)
-            action[1] = unnormalize(action[1], 0.0, 0.227554)
+            action[0] = unnormalize(action[0], 0.0, self.bin[0])
+            action[1] = unnormalize(action[1], 0.0, self.bin[1])
             action[2] = unnormalize(action[2], 0.0, 180.0)
 
         # throw error if objname is None
@@ -505,14 +509,14 @@ class PackingGame(gym.Env):
 
         subset = []
 
-        while(curVolume < targetVolumeRatio * BOX_VOLUME):
+        while(curVolume < targetVolumeRatio * self.BOX_VOLUME):
             obj = np.random.choice(ALL_OBJECTS)
             subset.append(obj)
             prevVolume = curVolume
             # add the bbox volume of the object to the current volume
             curVolume += self.bbox_volumes[ALL_OBJECTS.index(obj)]
         
-        if ((curVolume > max_volume * BOX_VOLUME) or (abs(targetVolumeRatio * BOX_VOLUME - curVolume) > abs(targetVolumeRatio * BOX_VOLUME - prevVolume))):
+        if ((curVolume > max_volume * self.BOX_VOLUME) or (abs(targetVolumeRatio * self.BOX_VOLUME - curVolume) > abs(targetVolumeRatio * self.BOX_VOLUME - prevVolume))):
             subset.pop()
 
         return subset

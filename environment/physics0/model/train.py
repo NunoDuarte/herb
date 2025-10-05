@@ -57,6 +57,8 @@ N_ENVS = 100
 DESIRED_CP = 200000
 DESIRED_EVAL = 500
 TOTAL_TIMESTEPS = 10000000
+BIN_SIZE = [0.345987, 0.227554, 0.1637639]
+OBJECT_INFO = 'dataset/datas/object_info.npz'
 ORDERED_OBJ = True
 REWARD_FUNCTION = 'compactness'
 ALPHA = None
@@ -67,7 +69,9 @@ CUSTOM_POLICY = None
 SEED = int(datetime.datetime.now().strftime("%d%H%M"))
 set_random_seed(SEED)
 
-train_env = make_vec_env(PackingGame, env_kwargs={'ordered_objs': ORDERED_OBJ, 
+train_env = make_vec_env(PackingGame, env_kwargs={'bin_size': BIN_SIZE,
+                                                  'object_info': OBJECT_INFO,
+                                                  'ordered_objs': ORDERED_OBJ, 
                                                   'reward_function': REWARD_FUNCTION, 
                                                   'alpha': ALPHA,
                                                   'unpacked_list_min': UNPACKED_LIST_MIN,
