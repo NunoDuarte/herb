@@ -1,4 +1,5 @@
 # Ignore policies directory
+__pycache__
 policies/
 tmp/
 
