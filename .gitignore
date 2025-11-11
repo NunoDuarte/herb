@@ -1,4 +1,5 @@
 # Ignore policies directory
+environment/physics0/simulator/__pycache__/
 __pycache__
 policies/
 tmp/
