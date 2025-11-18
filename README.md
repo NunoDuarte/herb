@@ -105,6 +105,9 @@ python environment/physics0/test_model.py
 ```
 and adjust the `unpacked_list` variable as needed.
 
+To test the model precision without gravity and contact forces you can comment the following line `simulator/packingGame.py`
+
+
 
 ## 🤖 ROS Integration
 We also run the RL policy on the Baxter robot 
