@@ -106,7 +106,10 @@ python environment/physics0/test_model.py
 and adjust the `unpacked_list` variable as needed.
 
 To test the model precision without gravity and contact forces you can comment the following line `simulator/packingGame.py`
-
+```diff 
+-         self.interface.simulateToQuasistatic(linearTol = 0.01, angularTol = 0.01, batch = 1.0, dt = 0.01, maxBatch = 2)
++         #self.interface.simulateToQuasistatic(linearTol = 0.01, angularTol = 0.01, batch = 1.0, dt = 0.01, maxBatch = 2)
+```
 
 
 ## 🤖 ROS Integration
