@@ -1,6 +1,6 @@
 # HERB - Hierarchical Robot Learning
 HERB is a framework for training robotic agents using hierarchical reinforcement learning approaches. This work is based on our paper 
-[arXiv](https://arxiv.org/pdf/2504.16595)
+[arXiv](https://arxiv.org/pdf/2504.16595) - Currently under review
 
 <img src="media/pybullet_gif.gif" width="233" height="300" /> <img src="media/iros25_herb_baxter.gif" width="535" height="300" />
 
@@ -104,6 +104,13 @@ To evaluate on custom object sequences, use:
 python environment/physics0/test_model.py
 ```
 and adjust the `unpacked_list` variable as needed.
+
+To test the model precision without gravity and contact forces you can comment the following line `simulator/packingGame.py`
+```diff
+@@ -370,1 +370,1 @@
+-         self.interface.simulateToQuasistatic(linearTol = 0.01, angularTol = 0.01, batch = 1.0, dt = 0.01, maxBatch = 2)
++         #self.interface.simulateToQuasistatic(linearTol = 0.01, angularTol = 0.01, batch = 1.0, dt = 0.01, maxBatch = 2)
+```
 
 
 ## 🤖 ROS Integration
