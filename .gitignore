@@ -2,6 +2,7 @@
 __pycache__
 policies/
 tmp/
+*/*/*/__pycache__
 
 # Ignore all .log files
 *.log
